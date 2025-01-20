@@ -1,5 +1,24 @@
-$textColor: blue;
+$textColor: royalblue;
+
+:root {
+  --textColor: #{$textColor};
+}
 
 html {
   background-color: papayawhip;
+}
+
+.list {
+  color: var(--textColor);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+img {
+  aspect-ratio: 1 / 1;
+  background-color: white;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
 }
