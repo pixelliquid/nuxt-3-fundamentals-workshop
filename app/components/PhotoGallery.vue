@@ -25,17 +25,19 @@ function fetchPhotoGallery() {
 </script>
 
 <template>
-  <h1>Photo Gallery</h1>
-  <button @click="fetchPhotoGallery">Fetch Data</button>
-  <p>
-    {{ numberOfPhotos }} photos ({{ oddAlbums.length }} odd albums |
-    {{ evenAlbums.length }} even albums)
-  </p>
-  <ul class="photo-gallery-list">
-    <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
-      <img :src="photo.thumbnailUrl" />
-    </li>
-  </ul>
+  <div class="section">
+    <h1 class="title">Photo Gallery</h1>
+    <button @click="fetchPhotoGallery">Fetch Data</button>
+    <p>
+      {{ numberOfPhotos }} photos ({{ oddAlbums.length }} odd albums |
+      {{ evenAlbums.length }} even albums)
+    </p>
+    <ul class="photo-gallery-list">
+      <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
+        <img :src="photo.thumbnailUrl" />
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style lang="scss">
