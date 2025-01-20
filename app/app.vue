@@ -6,7 +6,7 @@ import TodoViewer from './components/TodoViewer.vue'
 
 <template>
   <div class="section">
-    <h1 class="title">Hello world</h1>
+    <h1 class="title">Nuxt 3 Fundamentals course</h1>
   </div>
   <div class="section">
     <div class="columns">
