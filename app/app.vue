@@ -1,28 +1,28 @@
-<script>
-import { defineNuxtComponent } from '#app'
+<script setup>
+import { computed, ref } from 'vue'
 
-export default defineNuxtComponent({
-  data: () => ({
-    todoList: []
-  }),
-  computed: {
-    completedItems() {
-      return this.todoList.filter(item => item.completed)
-    },
-    remainingItems() {
-      return this.todoList.filter(item => !item.completed)
-    }
-  },
-  methods: {
-    fetchTodoList() {
-      fetch('https://jsonplaceholder.typicode.com/todos/')
-        .then(response => response.json())
-        .then(json => {
-          this.todoList = json
-        })
-    }
-  }
+let photoGallery = ref([])
+
+const numberOfPhotos = computed(() => {
+  return photoGallery.value.length
 })
+
+const evenAlbums = computed(() => {
+  return photoGallery.value.filter(item => item.albumId % 2 === 0)
+})
+
+const oddAlbums = computed(() => {
+  return photoGallery.value.filter(item => item.albumId % 2 !== 0)
+})
+
+function fetchPhotoGallery() {
+  fetch('https://jsonplaceholder.typicode.com/photos')
+    .then(response => response.json())
+    .then(json => {
+      photoGallery.value = json
+    })
+}
+
 </script>
 
 <template>
@@ -31,24 +31,17 @@ export default defineNuxtComponent({
     <p>
       Photo by
       <a
-        href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-        >Glenn Carstens-Peters</a
-      >
+        href="https://unsplash.com/@glenncarstenspeters?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Glenn
+        Carstens-Peters</a>
       on
       <a
-        href="https://unsplash.com/s/photos/todo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-        >Unsplash</a
-      >
+        href="https://unsplash.com/s/photos/todo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
     </p>
     <h1>Hello Frontend Masters!</h1>
-    <button @click="fetchTodoList">Fetch Data</button>
-    <p>
-      {{ completedItems.length }} completed |
-      {{ remainingItems.length }} remaining
-    </p>
+    <button @click="fetchPhotoGallery">Fetch Photos</button>
     <ul>
-      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
-        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
+      <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
+        <img :src="photo.thumbnailUrl" :alt="photo.title" />
       </li>
     </ul>
   </div>
