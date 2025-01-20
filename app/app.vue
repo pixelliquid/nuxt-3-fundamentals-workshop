@@ -39,6 +39,7 @@ function fetchPhotoGallery() {
     </p>
     <h1>Hello Frontend Masters!</h1>
     <button @click="fetchPhotoGallery">Fetch Photos</button>
+    <pre>{{ numberOfPhotos }} photos of which {{ oddAlbums.length }} in odd albums and {{ evenAlbums.length }} in even albums</pre>
     <ul>
       <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
         <img :src="photo.thumbnailUrl" :alt="photo.title" />
