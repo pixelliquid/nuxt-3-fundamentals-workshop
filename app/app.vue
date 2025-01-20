@@ -18,7 +18,6 @@ export default defineNuxtComponent({
 </script>
 
 <template>
-  <img src="/working.jpg" alt="working with kitten Chef" />
   <h1>Photo Gallery</h1>
   <button @click="fetchPhotosList">Fetch Photos</button>
   <ul>
