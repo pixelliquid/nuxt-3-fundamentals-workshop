@@ -29,14 +29,11 @@ function fetchTodoList() {
 
 <template>
   <div class="section">
+    <slot />
     <slot name="hero" />
     <h1 class="title">{{ title }}</h1>
     <button @click="fetchTodoList">Fetch Data</button>
-    <slot
-      name="metrics"
-      :completed="completedItems"
-      :remaining="remainingItems"
-    >
+    <slot name="metrics" :completed="completedItems" :remaining="remainingItems">
       <p>
         {{ completedItems.length }} completed |
         {{ remainingItems.length }} remaining

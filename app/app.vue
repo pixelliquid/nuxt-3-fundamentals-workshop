@@ -11,7 +11,19 @@ import TodoViewer from './components/TodoViewer.vue'
   <div class="section">
     <div class="columns">
       <div class="column">
-        <TodoViewer />
+        <TodoViewer title="This is fun!">
+          <h2 class="subtitle">Does this really work?</h2>
+          <template v-slot:hero>
+            <h2 class="subtitle">This heading is slotted into the named "hero" slot</h2>
+          </template>
+          <!-- <template v-slot:metrics="slotProps"> -->
+          <!-- <pre>{{ slotProps }}</pre> -->
+          <template v-slot:metrics="{ completed, remaining }">
+            <p>
+              <strong>{{ completed.length }} items completed</strong> | {{ remaining.length }} remaining
+            </p>
+          </template>
+        </TodoViewer>
       </div>
       <div class="column">
         <PhotoGallery />
