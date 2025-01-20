@@ -3,50 +3,47 @@ import { defineNuxtComponent } from '#app' // helpful when using options API
 
 export default defineNuxtComponent({
   data: () => ({
-    photoGallery: []
+    todoList: []
   }),
   methods: {
-    fetchPhotoGallery() {
-      fetch('https://jsonplaceholder.typicode.com/photos/')
+    fetchtodoList() {
+      fetch('https://jsonplaceholder.typicode.com/todos/')
         .then(response => response.json())
         .then(json => {
-          this.photoGallery = json
+          this.todoList = json
         })
       // same as above
       // .then(response => {
-      //   this.photoGallery = response.json()
+      //   this.todoList = response.json()
       // })
     }
   },
   // computed properties to show amount of data or filter the data in the json
   computed: {
-    numberOfPhotos() {
-      return this.photoGallery.length
+    numberOfTodos() {
+      return this.todoList.length
     },
-    evenAlbums() {
-      return this.photoGallery.filter(photo => photo.albumId % 2 === 0)
+    completedTodos() {
+      return this.todoList.filter(todo => todo.completed)
     },
-    oddAlbums() {
-      return this.photoGallery.filter(photo => photo.albumId % 2 !== 0)
-    },
-    evenAlbumPercentage() {
-      return (this.evenAlbums.length / this.numberOfPhotos) * 100
-    },
+    remainingTodos() {
+      return this.todoList.filter(todo => !todo.completed)
+    }
   }
 })
 </script>
 
 <template>
-  <h1>Photo Gallery</h1>
-  <button @click="fetchPhotoGallery">Fetch Photos</button>
-  <pre>{{ numberOfPhotos }} photos, {{ oddAlbums.length }} odd albums & {{ evenAlbums.length }} even albums
-  ({{ evenAlbums.length }} even albums is {{ evenAlbumPercentage }}% of the whole dataset)</pre>
+  <h1>To Do List</h1>
+  <button @click="fetchtodoList">Fetch Data</button>
+  <pre>{{ numberOfTodos }} total todos
+  of which are {{ completedTodos.length }} completed and {{ remainingTodos.length }} remaining</pre>
   <ul>
-    <li v-for="photo in photoGallery.slice(0, 20)" :key="`photo-id-${photo.id}`">
-      <img :src="photo.thumbnailUrl" :alt="`${photo.title}`" />
+    <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
+      <input type="checkbox" :checked="todo.completed">{{ todo.title }}</input>
     </li>
   </ul>
-  <pre>{{ photoGallery }}</pre>
+  <pre>{{ todoList }}</pre>
 </template>
 
 <style>
@@ -55,6 +52,6 @@ export default defineNuxtComponent({
   }
   ul {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 </style>
