@@ -1,25 +1,21 @@
 <script setup>
 import { computed, ref } from 'vue'
 
-let photoGallery = ref([])
+let todoList = ref([])
 
-const numberOfPhotos = computed(() => {
-  return photoGallery.value.length
+const completedItems = computed(() => {
+  return todoList.value.filter(item => item.completed)
 })
 
-const evenAlbums = computed(() => {
-  return photoGallery.value.filter(item => item.albumId % 2 === 0)
+const remainingItems = computed(() => {
+  return todoList.value.filter(item => !item.completed)
 })
 
-const oddAlbums = computed(() => {
-  return photoGallery.value.filter(item => item.albumId % 2 !== 0)
-})
-
-function fetchPhotoGallery() {
-  fetch('https://jsonplaceholder.typicode.com/photos')
+function fetchTodoList() {
+  fetch('https://jsonplaceholder.typicode.com/todos/')
     .then(response => response.json())
     .then(json => {
-      photoGallery.value = json
+      todoList.value = json
     })
 }
 
@@ -38,11 +34,13 @@ function fetchPhotoGallery() {
         href="https://unsplash.com/s/photos/todo?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
     </p>
     <h1>Hello Frontend Masters!</h1>
-    <button @click="fetchPhotoGallery">Fetch Photos</button>
-    <pre>{{ numberOfPhotos }} photos of which {{ oddAlbums.length }} in odd albums and {{ evenAlbums.length }} in even albums</pre>
+    <button @click="fetchTodoList">Fetch Data</button>
+    <pre>
+    {{ completedItems.length }} completed | {{ remainingItems.length }} remaining
+    </pre>
     <ul>
-      <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
-        <img :src="photo.thumbnailUrl" :alt="photo.title" />
+      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
+        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
       </li>
     </ul>
   </div>
