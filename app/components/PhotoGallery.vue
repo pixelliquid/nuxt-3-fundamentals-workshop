@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 let photoGallery = ref([])
 
@@ -25,29 +26,19 @@ function fetchPhotoGallery() {
 </script>
 
 <template>
-  <BaseDisplay
-    title="Photo Gallery"
-    itemType="photos"
-    v-model:itemList="photoGallery"
-  >
-    <template v-slot:hero> </template>
-    <template v-slot:items>
-    </template>
-  </BaseDisplay>
-  <!-- <h1>Photo Gallery</h1>
-  <button @click="fetchPhotoGallery">Fetch Data</button>
-  <p>
-    {{ numberOfPhotos }} photos ({{ oddAlbums.length }} odd albums |
-    {{ evenAlbums.length }} even albums)
-  </p>
-  <ul class="photo-gallery-list">
-
-  </ul> -->
+  <Base scope="photos" title="Photo Galley" v-model:itemList="photoGallery">
+  <template v-slot:metrics>
+    <pre>{{ numberOfPhotos }} photos in {{ evenAlbums.length }} even albums and {{ oddAlbums.length }} odd albums</pre>
+    <pre>{{ photoGallery }}</pre>
+  </template>
+  <template v-slot:items>
+    <ul>
+      <li v-for="photo in photoGallery" :key="`photo-${photo.id}`">
+        <img :src="photo.thumbnailUrl" :alt="photo.title" />
+      </li>
+    </ul>
+  </template>
+  </Base>
 </template>
 
-<style lang="scss">
-.photo-gallery-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-</style>
+<style lang="scss"></style>
