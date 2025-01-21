@@ -28,9 +28,6 @@ import TodoViewer from './components/TodoViewer.vue'
       <div class="column">
         <PhotoGallery />
       </div>
-      <div class="column">
-        <Base title="Using base component" scope="todos" />
-      </div>
     </div>
   </div>
 </template>

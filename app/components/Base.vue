@@ -1,29 +1,37 @@
 <script setup>
-import { computed, defineProps, ref } from 'vue'
+import { computed, defineEmits, defineProps, ref } from 'vue'
 
-let itemList = ref([])
-
-defineProps({
-  title: {
-    type: String,
-    default: 'Hello Frontend Masters!'
+const props = defineProps({
+  itemsList: {
+    type: Array,
+    default: () => []
   },
   scope: {
     type: String,
     default: 'todos'
+  },
+  title: {
+    type: String,
+    default: 'Hello Frontend Masters!'
   }
 })
+
+const emit = defineEmits(['update:itemList'])
 
 const numberOfItems = computed(() => {
   return itemList.value.length
 })
 
-function fetchData(sope) {
-  fetch(`https://jsonplaceholder.typicode.com/${scope}`)
+function fetchData() {
+  fetch(`https://jsonplaceholder.typicode.com/${props.scope}`)
     .then(response => response.json())
     .then(json => {
-      itemList.value = json
+      emit('update:itemList', json)
     })
+}
+
+function clearData() {
+  emit('update:itemList', [])
 }
 
 </script>
@@ -32,13 +40,14 @@ function fetchData(sope) {
   <div class="section">
     <h1 class="title">{{ title }}</h1>
     <button @click="fetchData">Fetch Data</button>
-    <slot>
-      <p>{{ numberOfItems }} items</p>
-    </slot>
+    <button @click="clearData">Clear Data</button>
+    <slot name="metrics" />
     <ul>
-      <li v-for="item in itemList" :key="`item-${item.id}`">
+      <!-- replace li for slot -->
+      <slot name="items" :itemList="itemList" />
+      <!-- <li v-for="item in itemList" :key="`item-${item.id}`">
         {{ item.title }}
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

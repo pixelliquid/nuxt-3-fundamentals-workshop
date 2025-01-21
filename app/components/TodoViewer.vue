@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue'
+import Base from './Base.vue'
 
 defineProps({
   title: {
@@ -25,32 +26,20 @@ function fetchTodoList() {
       todoList.value = json
     })
 }
+
+const textModel = ref('')
 </script>
 
 <template>
-  <div class="section">
-    <!-- default slot -->
-    <slot />
-    <!-- named slot -->
-    <slot name="hero" />
-
-    <h1 class="title">{{ title }}</h1>
-    <button @click="fetchTodoList">Fetch Data</button>
-
-    <slot name="metrics" :completed="completedItems" :remaining="remainingItems">
-      <!-- default content in this named slot -->
-      <p>
-        {{ completedItems.length }} completed |
-        {{ remainingItems.length }} remaining
-      </p>
-    </slot>
-    
-    <ul class="list">
-      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
-        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
-      </li>
-    </ul>
-  </div>
+  <Base scope="todos" title="Todo Viewer" v-model:itemList="todoList">
+  <template v-slot:metrics>
+    <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
+    <pre>{{ todoList }}</pre>
+  </template>
+  <template v-slot:items="slotProps">
+    <!--<pre>{{ slotProps.itemList }}</pre> -->
+  </template>
+  </Base>
 </template>
 
 <style lang="scss"></style>
