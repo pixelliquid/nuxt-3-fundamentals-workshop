@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 defineProps({
   title: {
@@ -26,20 +27,20 @@ function fetchTodoList() {
     })
 }
 
+const textModel = ref('')
 </script>
 
 <template>
-  <BaseDisplay title="Todo Viewer" itemType="todos" v-model:itemList="todoList">
-    <template v-slot:hero> </template>
-
-    <template v-slot:metrics>
-      {{ completedItems.length }} completed |
-      {{ remainingItems.length }} remaining
-    </template>
-
-    <template v-slot:items :completed="completedItems" :remaining="remainingItems">
-    </template>
-  </BaseDisplay>
+  <Base scope="todos" title="Todo Viewer" v-model:itemList="todoList">
+  <template v-slot:metrics>
+    <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }}
+    remaining</pre>
+    <pre>{{ todoList }}</pre>
+  </template>
+  <template v-slot:items="slotProps">
+    <!--<pre>{{ slotProps.itemList }}</pre> -->
+  </template>
+  </Base>
 </template>
 
 <style lang="scss"></style>
