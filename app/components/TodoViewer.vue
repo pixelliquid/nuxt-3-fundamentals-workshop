@@ -44,7 +44,7 @@ function fetchTodoList() {
         {{ remainingItems.length }} remaining
       </p>
     </slot>
-
+    
     <ul class="list">
       <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
         <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import PhotoGallery from './components/PhotoGallery.vue'
+import Base from './components/Base.vue'
 import TodoViewer from './components/TodoViewer.vue'
 </script>
 
@@ -27,6 +27,9 @@ import TodoViewer from './components/TodoViewer.vue'
       </div>
       <div class="column">
         <PhotoGallery />
+      </div>
+      <div class="column">
+        <Base title="Using base component" scope="todos" />
       </div>
     </div>
   </div>
