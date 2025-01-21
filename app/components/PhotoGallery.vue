@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import Base from './Base.vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 let photoGallery = ref([])
 

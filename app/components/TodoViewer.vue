@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue'
-import Base from './Base.vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 defineProps({
   title: {

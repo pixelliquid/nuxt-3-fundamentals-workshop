@@ -1,7 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
-import Base from './components/Base.vue'
-import TodoViewer from './components/TodoViewer.vue'
+// import Base from './components/Base.vue' - Nuxt infers this import from the component name
+// import TodoViewer from './components/TodoViewer.vue' - Nuxt infers this import from the component name
 </script>
 
 <template>
