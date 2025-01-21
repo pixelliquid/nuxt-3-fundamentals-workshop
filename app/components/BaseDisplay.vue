@@ -1,48 +1,55 @@
 <script setup>
-import { defineEmits, defineProps, ref } from 'vue'
+import { computed, defineEmits, defineProps, ref } from 'vue'
 
 const props = defineProps({
-  itemList: {
+  itemsList: {
     type: Array,
     default: () => []
   },
-  itemType: {
+  scope: {
     type: String,
-    required: true
+    default: 'todos'
   },
   title: {
     type: String,
-    required: true
+    default: 'Hello Frontend Masters!'
   }
 })
 
 const emit = defineEmits(['update:itemList'])
 
-function fetchItemList() {
-  fetch(`https://jsonplaceholder.typicode.com/${props.itemType}`)
+const numberOfItems = computed(() => {
+  return itemList.value.length
+})
+
+function fetchData() {
+  fetch(`https://jsonplaceholder.typicode.com/${props.scope}`)
     .then(response => response.json())
     .then(json => {
       emit('update:itemList', json)
     })
 }
 
-function clearItemList() {
+function clearData() {
   emit('update:itemList', [])
 }
+
 </script>
 
 <template>
-  <!-- Generic Template -->
   <div class="section">
-    <slot name="hero" />
     <h1 class="title">{{ title }}</h1>
-    <button @click="fetchItemList">Fetch Data</button>
-    <button @click="clearItemList">Clear Data</button>
+    <button @click="fetchData">Fetch Data</button>
+    <button @click="clearData">Clear Data</button>
     <slot name="metrics" />
-    <ul class="list">
+    <ul>
+      <!-- replace li for slot -->
       <slot name="items" :itemList="itemList" />
+      <!-- <li v-for="item in itemList" :key="`item-${item.id}`">
+        {{ item.title }}
+      </li> -->
     </ul>
   </div>
 </template>
 
-<style></style>
+<style lang="scss"></style>
