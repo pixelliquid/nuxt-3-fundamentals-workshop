@@ -25,6 +25,7 @@ function fetchTodoList() {
       todoList.value = json
     })
 }
+
 </script>
 
 <template>
@@ -35,27 +36,10 @@ function fetchTodoList() {
       {{ completedItems.length }} completed |
       {{ remainingItems.length }} remaining
     </template>
+
+    <template v-slot:items :completed="completedItems" :remaining="remainingItems">
+    </template>
   </BaseDisplay>
-  <!-- <div class="section">
-    <slot name="hero" />
-    <h1 class="title">{{ title }}</h1>
-    <button @click="fetchTodoList">Fetch Data</button>
-    <slot
-      name="metrics"
-      :completed="completedItems"
-      :remaining="remainingItems"
-    >
-      <p>
-        {{ completedItems.length }} completed |
-        {{ remainingItems.length }} remaining
-      </p>
-    </slot>
-    <ul class="list">
-      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
-        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
-      </li>
-    </ul>
-  </div> -->
 </template>
 
 <style lang="scss"></style>

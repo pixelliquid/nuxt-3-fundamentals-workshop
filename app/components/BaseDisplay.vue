@@ -25,6 +25,10 @@ function fetchItemList() {
       emit('update:itemList', json)
     })
 }
+
+function clearItemList() {
+  emit('update:itemList', [])
+}
 </script>
 
 <template>
@@ -33,6 +37,7 @@ function fetchItemList() {
     <slot name="hero" />
     <h1 class="title">{{ title }}</h1>
     <button @click="fetchItemList">Fetch Data</button>
+    <button @click="clearItemList">Clear Data</button>
     <slot name="metrics" />
     <ul class="list">
       <slot name="items" :itemList="itemList" />

@@ -32,9 +32,6 @@ function fetchPhotoGallery() {
   >
     <template v-slot:hero> </template>
     <template v-slot:items>
-      <li v-for="photo in photoGallery" :key="`photo-id-${photo.id}`">
-        <img :src="photo.thumbnailUrl" />
-      </li>
     </template>
   </BaseDisplay>
   <!-- <h1>Photo Gallery</h1>

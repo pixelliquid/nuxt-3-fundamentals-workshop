@@ -1,14 +1,10 @@
-<script setup>
-// Todo
-// Result:
-// /display/todos
-// /display/photos
-</script>
+<script setup></script>
 
 <template>
   <div class="container">
     <div class="section">
-      <h1>Display</h1>
+      <h1 class="title">Display</h1>
+      <NuxtPage :key="" />
     </div>
   </div>
 </template>
