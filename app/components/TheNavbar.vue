@@ -3,8 +3,14 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <NuxtLink to="/" class="navbar-item">Home</NuxtLink>
-      <NuxtLink to="/display" class="navbar-item">Display</NuxtLink>
+      <NuxtLink to="/" class="navbar-item">MyRecs</NuxtLink>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <NuxtLink to="/display" class="navbar-link">Display</NuxtLink>
+        <div class="navbar-dropdown">
+          <NuxtLink to="/display/photos" class="navbar-item">Photos</NuxtLink>
+          <NuxtLink to="/display/todos" class="navbar-item">Todos</NuxtLink>
+        </div>
+      </div>
     </div>
   </nav>
 </template>

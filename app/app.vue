@@ -11,7 +11,14 @@
 
 .router-link-active,
 a.navbar-item:hover,
-a.navbar-item:focus {
+a.navbar-item:focus,
+.navbar-link:hover,
+.navbar-link:focus,
+.navbar-dropdown a.navbar-item:hover {
   color: deeppink;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: currentColor;
 }
 </style>
