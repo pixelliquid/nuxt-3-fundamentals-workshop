@@ -1,5 +1,10 @@
 <script setup>
 import { computed, defineEmits, defineProps, ref } from 'vue'
+import { useRoute } from 'vue-router' // composable = util function with composition API attached to it
+
+const route = useRoute()
+console.log(route.path)
+const itemType = route.path.split('/')[2]
 
 const props = defineProps({
   itemsList: {

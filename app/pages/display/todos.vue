@@ -3,8 +3,6 @@ import { ref, computed } from 'vue'
 
 const todoList = ref([])
 
-// const route = useRoute()
-
 // const filteredTodoList = computed(() => {
 //   if (route.query.completed) {
 //     return completedItems.value
@@ -24,7 +22,7 @@ const remainingItems = computed(() => {
 
 <template>
   <div class="container">
-    <BaseDisplay scope="todos" title="Todo Viewer" v-model:itemList="todoList">
+    <BaseDisplay :itemType="itemType" title="Todo Viewer" v-model:itemList="todoList">
     <template v-slot:metrics>
       <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
       <pre>{{ todoList }}</pre>
