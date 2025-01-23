@@ -2,18 +2,10 @@
 import { computed, defineEmits, defineProps, ref } from 'vue'
 import { useRoute } from 'vue-router' // composable = util function with composition API attached to it
 
-const route = useRoute()
-console.log(route.path)
-const itemType = route.path.split('/')[2]
-
 const props = defineProps({
   itemsList: {
     type: Array,
     default: () => []
-  },
-  scope: {
-    type: String,
-    default: 'todos'
   },
   title: {
     type: String,
@@ -21,14 +13,19 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:itemList'])
-
 const numberOfItems = computed(() => {
   return itemList.value.length
 })
 
+const emit = defineEmits(['update:itemList'])
+
+// useRoute for dynamic route params
+const route = useRoute()
+console.log(route.path) // result: /display/todos or /display/photos
+const itemType = route.path.split('/')[2] // use the last bit in the path which is the name of the file within the display folder
+
 function fetchData() {
-  fetch(`https://jsonplaceholder.typicode.com/${props.scope}`)
+  fetch(`https://jsonplaceholder.typicode.com/${itemType}`)
     .then(response => response.json())
     .then(json => {
       emit('update:itemList', json)
@@ -38,10 +35,6 @@ function fetchData() {
 function clearData() {
   emit('update:itemList', [])
 }
-
-// const route = useRoute()
-
-// const itemType = route.path.split('/')[2]
 </script>
 
 <template>

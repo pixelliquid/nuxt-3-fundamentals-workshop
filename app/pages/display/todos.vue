@@ -22,7 +22,7 @@ const remainingItems = computed(() => {
 
 <template>
   <div class="container">
-    <BaseDisplay :itemType="itemType" title="Todo Viewer" v-model:itemList="todoList">
+    <BaseDisplay title="Todo Viewer" v-model:itemList="todoList">
     <template v-slot:metrics>
       <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
       <pre>{{ todoList }}</pre>

@@ -19,7 +19,7 @@ const oddAlbums = computed(() => {
 
 <template>
   <div class="container">
-    <BaseDisplay scope="photos" title="Photo Gallery" v-model:itemList="photoGallery">
+    <BaseDisplay title="Photo Gallery" v-model:itemList="photoGallery">
     <template v-slot:metrics>
       <pre>{{ numberOfPhotos }} photos in {{ evenAlbums.length }} even albums and {{ oddAlbums.length }} odd albums</pre>
       <pre>{{ photoGallery }}</pre>
