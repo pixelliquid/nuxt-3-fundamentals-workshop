@@ -3,7 +3,7 @@ import { computed, defineEmits, defineProps, ref } from 'vue'
 import { useRoute } from 'vue-router' // composable = util function with composition API attached to it
 
 const props = defineProps({
-  itemsList: {
+  itemList: {
     type: Array,
     default: () => []
   },
