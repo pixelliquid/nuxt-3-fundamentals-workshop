@@ -1,5 +1,6 @@
 <script setup>
 import { defineProps, ref, computed } from 'vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 defineProps({
   title: {
@@ -25,37 +26,20 @@ function fetchTodoList() {
       todoList.value = json
     })
 }
+
+// const textModel = ref('')
 </script>
 
 <template>
-  <BaseDisplay title="Todo Viewer" itemType="todos" v-model:itemList="todoList">
-    <template v-slot:hero> </template>
-
-    <template v-slot:metrics>
-      {{ completedItems.length }} completed |
-      {{ remainingItems.length }} remaining
-    </template>
+  <BaseDisplay scope="todos" title="Todo Viewer" v-model:itemList="todoList">
+  <template v-slot:metrics>
+    <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
+    <pre>{{ todoList }}</pre>
+  </template>
+  <template v-slot:items="slotProps">
+    <!--<pre>{{ slotProps.itemList }}</pre> -->
+  </template>
   </BaseDisplay>
-  <!-- <div class="section">
-    <slot name="hero" />
-    <h1 class="title">{{ title }}</h1>
-    <button @click="fetchTodoList">Fetch Data</button>
-    <slot
-      name="metrics"
-      :completed="completedItems"
-      :remaining="remainingItems"
-    >
-      <p>
-        {{ completedItems.length }} completed |
-        {{ remainingItems.length }} remaining
-      </p>
-    </slot>
-    <ul class="list">
-      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
-        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
-      </li>
-    </ul>
-  </div> -->
 </template>
 
 <style lang="scss"></style>
