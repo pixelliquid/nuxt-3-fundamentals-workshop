@@ -38,7 +38,7 @@ function fetchPhotoGallery() {
       </li>
     </ul>
   </template>
-  </Base>
+  </BaseDisplay>
 </template>
 
 <style lang="scss"></style>

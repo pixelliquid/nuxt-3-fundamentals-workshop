@@ -39,7 +39,7 @@ function fetchTodoList() {
   <template v-slot:items="slotProps">
     <!--<pre>{{ slotProps.itemList }}</pre> -->
   </template>
-  </Base>
+  </BaseDisplay>
 </template>
 
 <style lang="scss"></style>
