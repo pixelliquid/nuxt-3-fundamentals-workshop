@@ -3,15 +3,15 @@ import { ref, computed } from 'vue'
 
 const todoList = ref([])
 
-const route = useRoute()
+// const route = useRoute()
 
-const filteredTodoList = computed(() => {
-  if (route.query.completed) {
-    return completedItems.value
-  } else {
-    return remainingItems.value
-  }
-})
+// const filteredTodoList = computed(() => {
+//   if (route.query.completed) {
+//     return completedItems.value
+//   } else {
+//     return remainingItems.value
+//   }
+// })
 
 const completedItems = computed(() => {
   return todoList.value.filter(item => item.completed)
@@ -23,20 +23,22 @@ const remainingItems = computed(() => {
 </script>
 
 <template>
-  <BaseDisplay title="Todo Viewer" v-model:itemList="todoList">
-    <template v-slot:hero> </template>
-
+  <div class="container">
+    <BaseDisplay scope="todos" title="Todo Viewer" v-model:itemList="todoList">
     <template v-slot:metrics>
-      {{ completedItems.length }} completed |
-      {{ remainingItems.length }} remaining
+      <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
+      <pre>{{ todoList }}</pre>
     </template>
-
     <template v-slot:items>
-      <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
+      <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
         <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
       </li>
+      <!-- <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
+        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
+      </li> -->
     </template>
-  </BaseDisplay>
+    </BaseDisplay>
+  </div>
 </template>
 
 <style lang="scss"></style>

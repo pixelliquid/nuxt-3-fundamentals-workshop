@@ -3,27 +3,13 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io"> MyRecs </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start"></div>
-
-      <div class="navbar-end">
-        <NuxtLink to="/" class="navbar-item"> Home </NuxtLink>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <NuxtLink to="/display" class="navbar-link"> Display </NuxtLink>
-
-          <div class="navbar-dropdown">
-            <NuxtLink to="/display/photos" class="navbar-item">
-              Photos
-            </NuxtLink>
-            <NuxtLink to="/display/todos" class="navbar-item"> Todos </NuxtLink>
-            <NuxtLink to="/display/todos?completed=true" class="navbar-item">
-              Todos
-            </NuxtLink>
-          </div>
+      <NuxtLink to="/" class="navbar-item">MyRecs</NuxtLink>
+      <NuxtLink to="/display" class="navbar-item">Display</NuxtLink>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-link">Display options</div>
+        <div class="navbar-dropdown">
+          <NuxtLink to="/display/photos" class="navbar-item">Photos</NuxtLink>
+          <NuxtLink to="/display/todos" class="navbar-item">Todos</NuxtLink>
         </div>
       </div>
     </div>

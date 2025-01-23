@@ -1,37 +1,51 @@
 <script setup>
-import { defineEmits, defineProps, ref } from 'vue'
+import { computed, defineEmits, defineProps, ref } from 'vue'
 
 const props = defineProps({
-  itemList: {
+  itemsList: {
     type: Array,
     default: () => []
   },
+  scope: {
+    type: String,
+    default: 'todos'
+  },
   title: {
     type: String,
-    required: true
+    default: 'Default display title'
   }
 })
 
-const route = useRoute()
-
-const itemType = route.path.split('/')[2]
-
 const emit = defineEmits(['update:itemList'])
 
-fetch(`https://jsonplaceholder.typicode.com/${itemType}`)
-  .then(response => response.json())
-  .then(json => {
-    emit('update:itemList', json)
-  })
+const numberOfItems = computed(() => {
+  return itemList.value.length
+})
+
+function fetchData() {
+  fetch(`https://jsonplaceholder.typicode.com/${props.scope}`)
+    .then(response => response.json())
+    .then(json => {
+      emit('update:itemList', json)
+    })
+}
+
+function clearData() {
+  emit('update:itemList', [])
+}
+
+// const route = useRoute()
+
+// const itemType = route.path.split('/')[2]
 </script>
 
 <template>
-  <!-- Generic Template -->
   <div class="section">
-    <slot name="hero" />
     <h1 class="title">{{ title }}</h1>
+    <button @click="fetchData">Fetch Data</button>
+    <button @click="clearData">Clear Data</button>
     <slot name="metrics" />
-    <ul class="list">
+    <ul>
       <slot name="items" :itemList="itemList" />
     </ul>
   </div>
