@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <h2 class="subtitle">Todos</h2>
+  <h2 class="title">Todos</h2>
   <TodoViewer />
 </template>
 

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <h2 class="subtitle">Photos</h2>
+  <h2 class="title">Photos</h2>
   <PhotoGallery />
 </template>
 

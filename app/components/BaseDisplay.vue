@@ -12,7 +12,7 @@ const props = defineProps({
   },
   title: {
     type: String,
-    default: 'Hello Frontend Masters!'
+    default: 'Default display title'
   }
 })
 
