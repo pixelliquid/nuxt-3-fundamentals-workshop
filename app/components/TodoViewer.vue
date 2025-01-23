@@ -27,14 +27,13 @@ function fetchTodoList() {
     })
 }
 
-const textModel = ref('')
+// const textModel = ref('')
 </script>
 
 <template>
-  <Base scope="todos" title="Todo Viewer" v-model:itemList="todoList">
+  <BaseDisplay scope="todos" title="Todo Viewer" v-model:itemList="todoList">
   <template v-slot:metrics>
-    <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }}
-    remaining</pre>
+    <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
     <pre>{{ todoList }}</pre>
   </template>
   <template v-slot:items="slotProps">

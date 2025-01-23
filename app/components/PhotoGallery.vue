@@ -26,7 +26,7 @@ function fetchPhotoGallery() {
 </script>
 
 <template>
-  <Base scope="photos" title="Photo Galley" v-model:itemList="photoGallery">
+  <BaseDisplay scope="photos" title="Photo Gallery" v-model:itemList="photoGallery">
   <template v-slot:metrics>
     <pre>{{ numberOfPhotos }} photos in {{ evenAlbums.length }} even albums and {{ oddAlbums.length }} odd albums</pre>
     <pre>{{ photoGallery }}</pre>
