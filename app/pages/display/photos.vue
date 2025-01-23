@@ -1,12 +1,8 @@
 <script setup></script>
 
 <template>
+  <h2 class="subtitle">Photos</h2>
   <PhotoGallery />
 </template>
 
-<style lang="scss">
-.photo-gallery-list {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-</style>
+<style lang="scss"></style>

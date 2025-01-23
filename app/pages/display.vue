@@ -4,7 +4,7 @@
   <div class="container">
     <div class="section">
       <h1 class="title">Display</h1>
-      <NuxtPage :key="" />
+      <NuxtPage />
     </div>
   </div>
 </template>
