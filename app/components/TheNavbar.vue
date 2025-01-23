@@ -9,6 +9,8 @@
         <div class="navbar-link">Display options</div>
         <div class="navbar-dropdown">
           <NuxtLink to="/display/photos" class="navbar-item">Photos</NuxtLink>
+          <NuxtLink to="/display/photos?album=even" class="navbar-item">Photos in even albums</NuxtLink>
+          <NuxtLink to="/display/photos?album=odd" class="navbar-item">Photos in odd albums</NuxtLink>
           <NuxtLink to="/display/todos" class="navbar-item">Todos</NuxtLink>
           <NuxtLink to="/display/todos?completed=false" class="navbar-item">Open todos</NuxtLink>
           <NuxtLink to="/display/todos?completed=true" class="navbar-item">Completed todos</NuxtLink>
