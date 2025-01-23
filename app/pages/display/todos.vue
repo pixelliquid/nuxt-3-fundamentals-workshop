@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 const todoList = ref([])
 
@@ -25,15 +26,15 @@ const remainingItems = computed(() => {
     <BaseDisplay title="Todo Viewer" v-model:itemList="todoList">
     <template v-slot:metrics>
       <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }} remaining</pre>
-      <pre>{{ todoList }}</pre>
+      <!-- <pre>{{ todoList }}</pre> -->
     </template>
     <template v-slot:items>
+      <!-- <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
+        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
+      </li> -->
       <li v-for="todo in todoList" :key="`todo-id-${todo.id}`">
         <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
       </li>
-      <!-- <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
-        <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
-      </li> -->
     </template>
     </BaseDisplay>
   </div>
