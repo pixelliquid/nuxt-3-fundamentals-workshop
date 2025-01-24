@@ -1,7 +1,11 @@
 <script setup></script>
 
 <template>
-  <h1>Home Page</h1>
+  <div class="container">
+    <div class="section">
+      <h1 class="title">Home</h1>
+    </div>
+  </div>
 </template>
 
 <style></style>

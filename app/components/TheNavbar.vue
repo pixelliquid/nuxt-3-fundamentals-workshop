@@ -1,32 +1,19 @@
-<script setup>
-const completedCheck = ref(false)
-const todoQuery = computed(() => `?completed=${completedCheck}`)
-</script>
+<script setup></script>
 
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io"> MyRecs </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start"></div>
-
-      <div class="navbar-end">
-        <NuxtLink to="/" class="navbar-item"> Home </NuxtLink>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <NuxtLink to="/display" class="navbar-link"> Display </NuxtLink>
-
-          <div class="navbar-dropdown">
-            <NuxtLink to="/display/photos" class="navbar-item">
-              Photos
-            </NuxtLink>
-            <NuxtLink to="/display/todos" class="navbar-item"> Todos </NuxtLink>
-            <NuxtLink to="'/display/todos' + todoQuery" class="navbar-item">
-              Completed Todos
-            </NuxtLink>
-          </div>
+      <NuxtLink to="/" class="navbar-item">MyRecs</NuxtLink>
+      <NuxtLink to="/display" class="navbar-item">Display</NuxtLink>
+      <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-link">Display options</div>
+        <div class="navbar-dropdown">
+          <NuxtLink to="/display/photos" class="navbar-item">Photos</NuxtLink>
+          <NuxtLink to="/display/photos?album=even" class="navbar-item">Photos in even albums</NuxtLink>
+          <NuxtLink to="/display/photos?album=odd" class="navbar-item">Photos in odd albums</NuxtLink>
+          <NuxtLink to="/display/todos" class="navbar-item">Todos</NuxtLink>
+          <NuxtLink to="/display/todos?completed=false" class="navbar-item">Open todos</NuxtLink>
+          <NuxtLink to="/display/todos?completed=true" class="navbar-item">Completed todos</NuxtLink>
         </div>
       </div>
     </div>

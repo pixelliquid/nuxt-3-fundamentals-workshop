@@ -1,39 +1,43 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
+// import Base from './Base.vue' - Nuxt infers this import from the component name
 
 let photoGallery = ref([])
 
 const route = useRoute()
+console.log(route.query.album)
 
 const filteredPhotoGallery = computed(() => {
-  if (route.query.even) {
-    return photoGallery.value.filter(photo => photo.albumId % 2 === 0)
-  } else {
-    return photoGallery.value
+  switch (route.query.album) {
+    case 'even':
+      return photoGallery.value.filter(item => item.albumId % 2 === 0)
+    case 'odd':
+      return photoGallery.value.filter(item => item.albumId % 2 !== 0)
+    default:
+      return photoGallery.value
   }
 })
 </script>
 
 <template>
-  <BaseDisplay
-    title="Photo Gallery"
-    itemType="photos"
-    v-model:itemList="photoGallery"
-  >
-    <template v-slot:hero>
-      <p>{{ filteredPhotoGallery.length }} photos</p>
-    </template>
-    <template v-slot:items>
-      <li v-for="photo in filteredPhotoGallery" :key="`photo-id-${photo.id}`">
-        <img :src="photo.thumbnailUrl" />
-      </li>
-    </template>
-  </BaseDisplay>
+  <div class="container">
+    <BaseDisplay title="Photo Gallery" v-model:itemList="photoGallery">
+      <template v-slot:metrics>
+        <pre>{{ filteredPhotoGallery.length }} photos</pre>
+        <!-- <pre>{{ filteredPhotoGallery }}</pre> -->
+      </template>
+      <template v-slot:items>
+        <li v-for="photo in filteredPhotoGallery" :key="`photo-${photo.id}`">
+          <img :src="photo.thumbnailUrl" :alt="photo.id" />
+        </li>
+      </template>
+    </BaseDisplay>
+  </div>
 </template>
 
-<style lang="scss">
-.photo-gallery-list {
+<style lang="scss" scoped>
+ul {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(10, 1fr);
 }
 </style>
