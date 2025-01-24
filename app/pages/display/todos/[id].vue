@@ -3,7 +3,10 @@ const route = useRoute()
 </script>
 
 <template>
-  <h2>This is task id: {{ route.params }}</h2>
+  <div class="section">
+    <h2 class="title">This is task id: {{ route.params }}</h2>
+    <NuxtLink to="/display/todos">Back to Todos</NuxtLink>
+  </div>
 </template>
 
-<style></style>
+<style lang="scss"></style>

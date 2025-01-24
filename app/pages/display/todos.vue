@@ -29,7 +29,8 @@ const filteredTodoList = computed(() => {
 
 <template>
   <div class="container">
-    <BaseDisplay title="Todo Viewer" v-model:itemList="todoList">
+    <NuxtPage v-if="route.params.id" />
+    <BaseDisplay v-else title="Todo Viewer" v-model:itemList="todoList">
       <template v-slot:metrics>
         <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }}
         remaining</pre>
@@ -37,7 +38,8 @@ const filteredTodoList = computed(() => {
       </template>
       <template v-slot:items>
         <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
-          <input type="checkbox" :checked="todo.completed" /> {{ todo.title }}
+          <input type="checkbox" :checked="todo.completed" />
+          <NuxtLink :to="`/display/todos/${todo.id}`">{{ todo.title }}</NuxtLink>
         </li>
       </template>
     </BaseDisplay>
