@@ -22,16 +22,14 @@ const filteredPhotoGallery = computed(() => {
 <template>
   <div class="container">
     <BaseDisplay title="Photo Gallery" v-model:itemList="photoGallery">
-    <template v-slot:metrics>
-      <pre>{{ filteredPhotoGallery.length }} photos</pre>
-    </template>
-    <template v-slot:items>
-      <ul>
+      <template v-slot:metrics>
+        <pre>{{ filteredPhotoGallery.length }} photos</pre>
+      </template>
+      <template v-slot:items>
         <li v-for="photo in filteredPhotoGallery" :key="`photo-${photo.id}`">
           <img :src="photo.thumbnailUrl" :alt="photo.id" />
         </li>
-      </ul>
-    </template>
+      </template>
     </BaseDisplay>
   </div>
 </template>
