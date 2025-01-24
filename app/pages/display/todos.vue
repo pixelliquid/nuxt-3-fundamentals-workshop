@@ -46,4 +46,8 @@ const filteredTodoList = computed(() => {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+</style>

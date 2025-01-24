@@ -35,9 +35,4 @@ const filteredPhotoGallery = computed(() => {
   </div>
 </template>
 
-<style lang="scss" scoped>
-ul {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-}
-</style>
+<style lang="scss"></style>
