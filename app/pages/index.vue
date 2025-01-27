@@ -3,9 +3,7 @@
 <template>
   <div class="container">
     <div class="section">
-      <NuxtLayout>
-        <h1 class="title">Home</h1>
-      </NuxtLayout>
+      <h1 class="title">Home</h1>
     </div>
   </div>
 </template>
