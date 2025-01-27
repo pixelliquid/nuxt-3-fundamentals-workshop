@@ -1,0 +1,26 @@
+html {
+  background-color: papayawhip;
+}
+
+.router-link-active,
+a.navbar-item:hover,
+a.navbar-item:focus,
+.navbar-link:hover,
+.navbar-link:focus,
+.navbar-dropdown a.navbar-item:hover {
+  color: deeppink;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: currentColor;
+}
+
+ul {
+  column-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+input[type='checkbox'] {
+  margin-right: 0.5rem;
+}

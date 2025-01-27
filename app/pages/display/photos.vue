@@ -39,4 +39,4 @@ const filteredPhotoGallery = computed(() => {
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="css"></style>
