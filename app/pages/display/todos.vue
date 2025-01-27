@@ -1,4 +1,5 @@
 <script setup>
+import { NuxtLayout } from '#components'
 import { computed, ref } from 'vue'
 // import Base from './Base.vue' - Nuxt infers this import from the component name
 
@@ -28,22 +29,24 @@ const filteredTodoList = computed(() => {
 </script>
 
 <template>
-  <div class="container">
-    <NuxtPage v-if="route.params.id" />
-    <BaseDisplay v-else title="Todo Viewer" v-model:itemList="todoList">
-      <template v-slot:metrics>
-        <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }}
-        remaining</pre>
-        <!-- <pre>{{ todoList }}</pre> -->
-      </template>
-      <template v-slot:items>
-        <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
-          <input type="checkbox" :checked="todo.completed" />
-          <NuxtLink :to="`/display/todos/${todo.id}`">{{ todo.title }}</NuxtLink>
-        </li>
-      </template>
-    </BaseDisplay>
-  </div>
+  <NuxtLayout name="todos">
+    <div class="container">
+      <NuxtPage v-if="route.params.id" />
+      <BaseDisplay v-else title="Todo Viewer" v-model:itemList="todoList">
+        <template v-slot:metrics>
+          <pre>{{ todoList.length }} items | {{ completedItems.length }} items completed | {{ remainingItems.length }}
+          remaining</pre>
+          <!-- <pre>{{ todoList }}</pre> -->
+        </template>
+        <template v-slot:items>
+          <li v-for="todo in filteredTodoList" :key="`todo-id-${todo.id}`">
+            <input type="checkbox" :checked="todo.completed" />
+            <NuxtLink :to="`/display/todos/${todo.id}`">{{ todo.title }}</NuxtLink>
+          </li>
+        </template>
+      </BaseDisplay>
+    </div>
+  </NuxtLayout>
 </template>
 
 <style lang="scss"></style>

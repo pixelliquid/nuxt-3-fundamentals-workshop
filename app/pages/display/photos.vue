@@ -20,23 +20,25 @@ const filteredPhotoGallery = computed(() => {
 </script>
 
 <template>
-  <div class="container">
-    <NuxtPage v-if="route.params.id" />
-    <BaseDisplay v-else title="Photo Gallery" v-model:itemList="photoGallery">
-      <template v-slot:metrics>
-        <pre>{{ filteredPhotoGallery.length }} photos</pre>
-        <!-- <pre>{{ filteredPhotoGallery }}</pre> -->
-      </template>
-      <template v-slot:items>
-        <li v-for="photo in filteredPhotoGallery" :key="`photo-${photo.id}`">
-          <NuxtLink :to="`/display/photos/${photo.id}`">
-            <img :src="photo.thumbnailUrl" :alt="photo.id" />
-            {{ photo.title }}
-          </NuxtLink>
-        </li>
-      </template>
-    </BaseDisplay>
-  </div>
+  <NuxtLayout name="photos">
+    <div class="container">
+      <NuxtPage v-if="route.params.id" />
+      <BaseDisplay v-else title="Photo Gallery" v-model:itemList="photoGallery">
+        <template v-slot:metrics>
+          <pre>{{ filteredPhotoGallery.length }} photos</pre>
+          <!-- <pre>{{ filteredPhotoGallery }}</pre> -->
+        </template>
+        <template v-slot:items>
+          <li v-for="photo in filteredPhotoGallery" :key="`photo-${photo.id}`">
+            <NuxtLink :to="`/display/photos/${photo.id}`">
+              <img :src="photo.thumbnailUrl" :alt="photo.id" />
+              {{ photo.title }}
+            </NuxtLink>
+          </li>
+        </template>
+      </BaseDisplay>
+    </div>
+  </NuxtLayout>
 </template>
 
 <style lang="scss"></style>
