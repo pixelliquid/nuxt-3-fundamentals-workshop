@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 // import Base from './Base.vue' - Nuxt infers this import from the component name
 
 const todoList = ref([])
