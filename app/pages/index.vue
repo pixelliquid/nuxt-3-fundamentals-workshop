@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+useHead({
+  title: 'Hello world'
+})
+</script>
 
 <template>
   <div class="container">
