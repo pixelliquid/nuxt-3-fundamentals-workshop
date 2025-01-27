@@ -9,4 +9,4 @@ const route = useRoute()
   </div>
 </template>
 
-<style lang="css"></style>
+<style lang="scss"></style>

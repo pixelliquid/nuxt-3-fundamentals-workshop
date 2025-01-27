@@ -5,6 +5,4 @@
   <NuxtPage />
 </template>
 
-<style lang="css">
-@import '~/assets/styles/main.css';
-</style>
+<style lang="scss"></style>

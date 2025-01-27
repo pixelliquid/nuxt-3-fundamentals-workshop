@@ -46,4 +46,4 @@ const filteredTodoList = computed(() => {
   </div>
 </template>
 
-<style lang="css"></style>
+<style lang="scss"></style>
